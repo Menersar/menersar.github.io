@@ -18,7 +18,7 @@ Access URLs of the Scratch API to get:
 `https://api.scratch.mit.edu/users/${username}/`
 ```
 
-- **STUDIO** PAGE with offset via `studio id` and `offset`:
+- **STUDIO PAGE** with offset via `studio id` and `offset`:
 
 ```console
 `https://api.scratch.mit.edu/studios/${studioId}/projects?offset=${offset}&limit=40`
@@ -36,13 +36,13 @@ Access URLs of the Scratch API to get:
 `https://uploads.scratch.mit.edu/users/avatars/${userId}.png`
 ```
 
-- **TEXT TRANSLATION** into LANGUAGE via `language` and passed `text` in `encodeURIComponent()`:
+- **TEXT TRANSLATION** into language via `language` and passed `text` in `encodeURIComponent()`:
 
 ```console
 `https://translate-service.scratch.mit.edu/translate?language=${language}&text=${encodeURIComponent(text)}`
 ```
 
-- **T**(EXT) **T**(O) **S**(PEECH) with LOCALE and GENDER via `locale`, `gender` and passed `text` in `encodeURIComponent()`:
+- **T**(EXT) **T**(O) **S**(PEECH) with locale and gender via `locale`, `gender` and passed `text` in `encodeURIComponent()`:
 
 ```console
 `https://synthesis-service.scratch.mit.edu/synth?locale=${locale}&gender=${gender}&text=${encodeURIComponent(text)}`
