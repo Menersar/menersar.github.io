@@ -36,13 +36,13 @@ Access URLs of the Scratch API to get:
 `https://uploads.scratch.mit.edu/users/avatars/${userId}.png`
 ```
 
-- **TEXT TRANSLATION** into specific language via specified `language` and passed `text` in `encodeURIComponent()`:
+- **TEXT TRANSLATION** into **LANGUAGE** via specified `language` and passed `text` in `encodeURIComponent()`:
 
 ```console
 `https://translate-service.scratch.mit.edu/translate?language=${language}&text=${encodeURIComponent(text)}`
 ```
 
-- **TEXT TO SPEECH** (TTS) with specific gender and locale via specified `locale` and `gender` as well as passed `text` in `encodeURIComponent()`:
+- **TEXT TO SPEECH** (TTS) with **LOCALE** and **GENDER** via specified `locale` and `gender` and passed `text` in `encodeURIComponent()`:
 
 ```console
 `https://synthesis-service.scratch.mit.edu/synth?locale=${locale}&gender=${gender}&text=${encodeURIComponent(text)}`
