@@ -56,7 +56,7 @@ Access URLs of the Scratch API to get:
 
 ### Visualization
 
-![scratch-api-visualization.png](scratch-api-visualization.png)
+![Visualization representation of the Scratch API (PNG)](assets/images/scratch-api-visualization.png)
 
 ### Sources
 
