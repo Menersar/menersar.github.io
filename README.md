@@ -42,7 +42,7 @@ Access URLs of the Scratch API to get:
 `https://translate-service.scratch.mit.edu/translate?language=${language}&text=${encodeURIComponent(text)}`
 ```
 
-- **TEXT TO SPEECH** (TTS) with **LOCALE** and **GENDER** via `locale`, `gender` and passed `text` in `encodeURIComponent()`:
+- **TEXT TO SPEECH** with **LOCALE** and **GENDER** via `locale`, `gender` and passed `text` in `encodeURIComponent()`:
 
 ```console
 `https://synthesis-service.scratch.mit.edu/synth?locale=${locale}&gender=${gender}&text=${encodeURIComponent(text)}`
