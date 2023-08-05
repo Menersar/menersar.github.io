@@ -10,8 +10,6 @@
 
 ### URLs
 
-(Source: <https://github.com/TurboWarp/trampoline>; <https://github.com/TurboWarp/trampoline/blob/master/src/api.js>)
-
 Access URLs of the Scratch API to get:
 
 - user via username:
@@ -55,3 +53,16 @@ Access URLs of the Scratch API to get:
 ```console
 `https://assets.scratch.mit.edu/internalapi/asset/${md5ext}/get/`
 ```
+
+### Visualization
+
+![scratch-api-visualization.png](scratch-api-visualization.png)
+
+### Sources
+
+- <https://github.com/TurboWarp/trampoline>
+- <https://github.com/TurboWarp/trampoline/blob/master/src/api.js>
+- <https://scratch.mit.edu/discuss/topic/497809/>
+- <https://scratch.mit.edu/discuss/topic/655936/>
+- <https://en.scratch-wiki.info/wiki/Scratch_API>
+- <https://de.scratch-wiki.info/wiki/Scratch_API>
