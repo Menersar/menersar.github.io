@@ -8787,8 +8787,20 @@ const getProjectMetadata = async (id) => {
     const meta = await Object(_common_request__WEBPACK_IMPORTED_MODULE_1__["default"])({
       url: [
         // Hopefully one of these URLs won't be blocked.
-        `https://trampoline.turbowarp.org/api/projects/${id}`,
-        `https://trampoline.turbowarp.xyz/api/projects/${id}`
+        // `https://trampoline.turbowarp.org/api/projects/${id}`,
+        // `https://trampoline.turbowarp.xyz/api/projects/${id}`,
+        // `https://api.scratch.mit.edu/projects/${id}?nocache=${Date.now()}`,
+        // `https://api.scratch.mit.edu/projects/${id}?nocache=${Date.now()}`
+
+
+        // !!!!
+        // !!! ???
+        // `https://api.scratch.mit.edu/projects/${id}?nocache=${Date.now()}`,
+        // `https://api.scratch.mit.edu/projects/${id}?nocache=${Date.now()}`,
+        `https://api.scratch.mit.edu/projects/${id}`,
+        `https://api.scratch.mit.edu/projects/${id}`,
+
+
       ],
       type: 'json'
     });
