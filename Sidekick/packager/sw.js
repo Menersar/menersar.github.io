@@ -1,6 +1,6 @@
 // These will be replaced at build-time by generate-service-worker-plugin.js
-const ASSETS = ["","js/download-project.6f0e2ce799895edeb2be.worker.js","assets/reset.80a6e1615fc013684ad8047dba5ce064.svg","assets/default-icon.290e09e569a1cab8e61ba93b0d23863f.png","js/vendors~icns~jszip~sha256.45d79f17e909e6d47b0e.js","js/icns.ddff1f925efd18aed929.js","js/jszip.41ecc138b10fe9350a55.js","js/p4.ff09b32e8ff6d09d991a.js","js/packager-options-ui.c6310c29feaa0b5241cd.js","js/sha256.65a53bbd4b259520122b.js"];
-const CACHE_NAME = "p4-82725f4cb572c7222a7e58f6a3e18f4b3f0a9c30dda16f614f9dc788a20c5a5f";
+const ASSETS = ["","js/download-project.6f0e2ce799895edeb2be.worker.js","assets/reset.80a6e1615fc013684ad8047dba5ce064.svg","assets/default-icon.290e09e569a1cab8e61ba93b0d23863f.png","js/vendors~icns~jszip~sha256.45d79f17e909e6d47b0e.js","js/icns.ddff1f925efd18aed929.js","js/jszip.41ecc138b10fe9350a55.js","js/p4.ca92d97f7a361dd9d7c4.js","js/packager-options-ui.c6310c29feaa0b5241cd.js","js/sha256.65a53bbd4b259520122b.js"];
+const CACHE_NAME = "p4-6fafbf10ad5ea7f2468d2bbdada303bffab2abc61e3c993f790212bc0791c53c";
 const IS_PRODUCTION = true;
 
 const base = location.pathname.substr(0, location.pathname.indexOf('sw.js'));
