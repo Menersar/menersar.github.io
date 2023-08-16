@@ -102,7 +102,7 @@
               SERVER: {
                 type: Scratch.ArgumentType.STRING,
                 // defaultValue: "wss://clouddata.turbowarp.org",
-                defaultValue: "ws:localhost:9080",
+                defaultValue: "ws:localhost:8080",
               },
             },
           },
