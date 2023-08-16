@@ -1,0 +1,7 @@
+node_modules
+# Private filter list
+private.filter
+# Logs
+logs
+
+.history
