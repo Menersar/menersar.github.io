@@ -33,7 +33,9 @@
             arguments: {
               IMAGEURL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: "https://extensions.turbowarp.org/robot.png",
+                // !!! CHANGE !!!
+                // defaultValue: "https://extensions.turbowarp.org/robot.png",
+                defaultValue: "https://menersar.github.io/Sidekick/sidekick-extensions/robot.png",
               },
             },
             disableMonitor: true,

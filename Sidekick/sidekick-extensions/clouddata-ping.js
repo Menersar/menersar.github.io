@@ -1,3 +1,8 @@
+// Name: Ping Cloud Data
+// ID: clouddataping
+// Description: Determine whether a cloud variable server is probably up.
+// Original: TheShovel
+
 (function (Scratch) {
   "use strict";
 
@@ -17,10 +22,10 @@
    * @returns {Promise<CacheEntry>}
    */
   const pingWebSocket = async (uri) => {
-    if (!await Scratch.canFetch(uri)) {
+    if (!(await Scratch.canFetch(uri))) {
       return {
         expires: 0,
-        value: false
+        value: false,
       };
     }
 
@@ -33,7 +38,7 @@
     } catch (e) {
       return {
         expires: 0,
-        value: false
+        value: false,
       };
     }
 
@@ -60,7 +65,7 @@
 
     return {
       expires: Date.now() + 60000,
-      value: isUp
+      value: isUp,
     };
   };
 
@@ -101,9 +106,9 @@
             arguments: {
               SERVER: {
                 type: Scratch.ArgumentType.STRING,
-                // !!! CHANGE !!!
+                // !!! c CHANGE !!!
                 // defaultValue: "wss://clouddata.turbowarp.org",
-                // defaultValue: "wss://clouddata.scratch.mit.edu",
+                // defaultValue: "wss://clouddata.turbowarp.org",
                 defaultValue: "ws:localhost:8080",
               },
             },

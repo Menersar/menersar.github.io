@@ -1,3 +1,8 @@
+// Name: Utilities
+// ID: utilities
+// Description: A bunch of interesting blocks.
+// Original: Sheep_maker <https://scratch.mit.edu/users/Sheep_maker/>
+
 /*!
  * This is based on:
  * https://github.com/SheepTester/sheeptester.github.io/blob/master/javascripts/utilities.js
@@ -199,7 +204,9 @@
             arguments: {
               URL: {
                 type: Scratch.ArgumentType.STRING,
-                defaultValue: 'https://extensions.turbowarp.org/hello.txt'
+                // !!! CHANGE !!!
+                // defaultValue: 'https://extensions.turbowarp.org/hello.txt'
+                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions/hello.txt'
               }
             }
           },

@@ -1,3 +1,7 @@
+// Name: Local Storage
+// ID: localstorage
+// Description: Store data persistently. Like cookies, but better.
+
 (function (Scratch) {
   'use strict';
 
@@ -5,7 +9,9 @@
     throw new Error('Local Storage must be run unsandboxed');
   }
 
-  const PREFIX = 'extensions.turbowarp.org/local-storage:';
+  // !!! ? CHANGE !!!
+//   const PREFIX = 'extensions.turbowarp.org/local-storage:';
+  const PREFIX = 'menersar.github.io/Sidekick/sidekick-extensions/local-storage:';
   let namespace = '';
   const getFullStorageKey = () => `${PREFIX}${namespace}`;
 
@@ -67,7 +73,9 @@
       return {
         id: 'localstorage',
         name: 'Local Storage',
-        docsURI: "https://extensions.turbowarp.org/local-storage.html",
+        // !!! CHANGE !!!
+        // docsURI: "https://extensions.turbowarp.org/local-storage",
+        docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions/local-storage",
         blocks: [
           {
             opcode: 'setProjectId',
@@ -124,7 +132,7 @@
           },
           {
             opcode: 'whenChanged',
-            blockType: Scratch.BlockType.HAT,
+            blockType: Scratch.BlockType.EVENT,
             text: 'when another window changes storage',
             isEdgeActivated: false
           }
