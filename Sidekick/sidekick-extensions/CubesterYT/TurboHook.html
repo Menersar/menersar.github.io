@@ -1,259 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>TurboHook docs</title>
+		<style>
+			.inbox {
+				text-align: left;
+				display: inline-block;
+				background-color: #ffffff;
+				max-width: 600px;
+				width: 100%;
+				border: 1px solid #e2e2e2;
+				border-radius: 5px;
+				margin: 30px 0 0 0;
+				padding: 10px 15px 15px 15px;
+				overflow: hidden;
+			}
+			body {
+				background-color: #f2f2f2;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+				font-family: Arial, Helvetica, sans-serif;
+				transition: all 100ms ease-out;
+			}
+			.title {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.uppertext {
+				display: flex;
+				justify-content: center;
+				background-color: /*#4d97ff;*/ #ff4d4d;
+				min-height: 150px;
+				text-align: center;
+				font-size: 45px;
+				width: 100%;
+				font-weight: bold;
+				color: white;
+			}
+			.hidden {
+				display: none;
+			}
+			.box {
+				background-color: #eeeeee;
+				padding: 0 0.2em;
+				border-radius: 3px;
+				color: #222222;
+			}
+			.code {
+				background-color: #f0f0f0;
+				border-radius: 3px;
+				resize: none;
+				width: 100%;
+			}
+			.imgBox {
+				width: 100%;
+				overflow: auto;
+			}
+			* {
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="uppertext">
+			<span class="title">TurboHook extension documentation</title>
+		</div>
+		<div class="inbox">
+			<h2>About this extension</h2>
+			<p>This extension allows you to post to webhooks from some common third-party websites or programs.</p>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- !!! CHANGE !!! -->
-    <title>TurboHook - Sidekick Extension Documentation</title>
-    <!-- !!! CHANGE !!! -->
-    <!-- !!! 'canonical'? ??? -->
-    <!-- !!! CHANGE !!! -->
-    <link rel="canonical" href="https://menersar.github.io/Sidekick/sidekick-extensions/CubesterYT/TurboHook">
-    <style>
-        :root {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color-scheme: light dark;
-            font-size: 16px;
-        }
+			<hr>
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                /* !!! CHANGE !!! */
-                /* color: #eee; */
-                color: #eee;
-                /* !!! CHANGE !!! */
-                /* background: #131313; */
-                background: #131313;
-            }
-        }
+			<h2>Blocks</h2>
+			<h3>Webhook Block</h3>
+			<p>Posts a message to a webhook.</p>
+			<img src="webhook.png" width="242.25" height="57"/>
+			<p>The empty area is where you insert the data reporter and/or connector reporter. The string area is where you put your webhook's URL.</p>
 
-        @media (prefers-color-scheme: dark) {
-            a {
-                /* !!! CHANGE !!! */
-                /* color: #56b2ff; */
-                color: #56b2ff;
-            }
+			<hr>
 
-            a:visited {
-                /* !!! CHANGE !!! */
-                /* color: #f192ff; */
-                color: #f192ff;
-            }
+			<h3>Data Reporter</h3>
+			<p>The Menu area of the Data Reporter currently has three options, ("content","name","icon").</p>
+			<h4>Content</h4>
+			<img src="content.png" width="112.875" height="45"/>
+			<p>When choosing "content", you can type in the text you want to send as the body of the webhook.</p>
+			<h4>Name</h4>
+			<img src="name.png" width="103.5" height="45"/>
+			<p>When choosing "name", you can type in the name of the name you want the webhook to display as on the third-party website.</p>
+			<h4>Icon</h4>
+			<img src="icon.png" width="95.625" height="45"/>
+			<p>When choosing "icon", you can type in a URL to the image you want to set as the profile picture of the webhook.</p>
 
-            a:active {
-                /* !!! CHANGE !!! */
-                /* color: red; */
-                color: red;
-            }
-        }
+			<hr>
 
-        body {
-            margin: 0;
-            padding: 0;
-            line-height: 1.3;
-        }
-
-        nav {
-            /* !!! CHANGE !!! */
-            /* background-color: #ff4c4c; */
-            background-color: #62ad44;
-            /* !!! CHANGE !!! */
-            /* color: white; */
-            color: white;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-
-        nav>* {
-            display: flex;
-            align-items: center;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0.5rem 0.25rem;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: inherit !important;
-        }
-
-        nav>*:hover {
-            text-decoration: underline;
-        }
-
-        nav img {
-            width: 2rem;
-            height: 2rem;
-            flex-shrink: 0;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            nav {
-                background-color: #333;
-            }
-        }
-
-        noscript {
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 0 0.25rem;
-        }
-
-        h1 {
-            font-size: 2.25rem;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            border-bottom: 1px solid #ccc;
-        }
-
-        hr {
-            border: none;
-            border-top: 1px solid #ccc;
-            margin: 1rem 0;
-        }
-
-        @media (prefers-color-scheme: dark) {
-
-            hr,
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6 {
-                border-color: #444;
-            }
-        }
-
-        code {
-            background-color: #eee;
-            border-radius: 4px;
-            padding: 0 2px;
-        }
-
-        pre {
-            background-color: #eee;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 4px;
-            overflow-x: auto;
-        }
-
-        @media (prefers-color-scheme: dark) {
-
-            code,
-            pre {
-                background-color: #223;
-                border-color: #334;
-            }
-        }
-
-        .render-scratchblocks {
-            width: 100%;
-            overflow-x: auto;
-            white-space: pre;
-        }
-
-        .render-scratchblocks svg {
-            display: block;
-        }
-
-        footer {
-            margin: 1rem 0;
-            font-size: small;
-        }
-    </style>
-</head>
-
-<body>
-    <nav role="navigation">
-        <a href="/">
-            <!-- !!! CHANGE !!! -->
-            <img src="/sidekick.svg" alt="">
-            <!-- !!! CHANGE !!! -->
-            <span>Sidekick Extension Gallery</span>
-        </a>
-    </nav>
-
-    <main class="container">
-        <h1>TurboHook</h1>
-
-      <noscript><p>Enable JavaScript for blocks to render.</p></noscript>
-
-      <p>This extension allows you to post to webhooks from some common third-party websites or programs.</p>
-<h2>WebHook block</h2>
-<p>Posts a message to a webhook.</p>
-<div class="render-scratchblocks">webhook data: [] webhook url: [] :: #3c48c2
-</div><p>The empty area is where you insert the data reporter and/or connector reporter. The string area is where you put your webhook's URL.</p>
-<h2>Data Reporter</h2>
-<p>The Menu area of the Data Reporter currently has three options, (&quot;content&quot;,&quot;name&quot;,&quot;icon&quot;).</p>
-<h3>Content</h3>
-<div class="render-scratchblocks">((content v) [] :: #3c48c2)
-</div><p>When choosing &quot;content&quot;, you can type in the text you want to send as the body of the webhook.</p>
-<h3>Name</h3>
-<div class="render-scratchblocks">((name v) [] :: #3c48c2)
-</div><p>When choosing &quot;name&quot;, you can type in the name of the name you want the webhook to display as on the third-party website.</p>
-<h3>Icon</h3>
-<div class="render-scratchblocks">((icon v) [] :: #3c48c2)
-</div><p>When choosing &quot;icon&quot;, you can type in a URL to the image you want to set as the profile picture of the webhook.</p>
-<h2>Connector Reporter</h2>
-<div class="render-scratchblocks">([], [] :: #3c48c2)
-</div><p>This reporter connects two different data reporters together and/or another connector reporter so you can send multiple pieces of data to the webhook.</p>
-        
-
-        <p>This extension allows you to post to webhooks from some common third-party websites or programs.</p>
-<h2>WebHook block</h2>
-<p>Posts a message to a webhook.</p>
-<div class="render-scratchblocks">webhook data: [] webhook url: [] :: #3c48c2
-</div><p>The empty area is where you insert the data reporter and/or connector reporter. The string area is where you put your webhook's URL.</p>
-<h2>Data Reporter</h2>
-<p>The Menu area of the Data Reporter currently has three options, (&quot;content&quot;,&quot;name&quot;,&quot;icon&quot;).</p>
-<h3>Content</h3>
-<div class="render-scratchblocks">((content v) [] :: #3c48c2)
-</div><p>When choosing &quot;content&quot;, you can type in the text you want to send as the body of the webhook.</p>
-<h3>Name</h3>
-<div class="render-scratchblocks">((name v) [] :: #3c48c2)
-</div><p>When choosing &quot;name&quot;, you can type in the name of the name you want the webhook to display as on the third-party website.</p>
-<h3>Icon</h3>
-<div class="render-scratchblocks">((icon v) [] :: #3c48c2)
-</div><p>When choosing &quot;icon&quot;, you can type in a URL to the image you want to set as the profile picture of the webhook.</p>
-<h2>Connector Reporter</h2>
-<div class="render-scratchblocks">([], [] :: #3c48c2)
-</div><p>This reporter connects two different data reporters together and/or another connector reporter so you can send multiple pieces of data to the webhook.</p>
-
-
-      <hr>
-      
-            <!-- !!! CHANGE !!! -->
-            <footer>
-                <p>
-                    This page is <a href="https://github.com/Menersar/sidekick-extensions/tree/sidekick/sidekick-docs">open source</a>.
-                    
-                        Blocks rendered with <a href="https://scratchblocks.github.io/">scratchblocks</a>.
-                        
-                </p>
-                <!-- !!! CHANGE !!! -->
-                <p>Sidekick is not affiliated with Scratch, the Scratch Team, or the Scratch Foundation.</p>
-            </footer>
-    </main>
-
-    
-        <script src="/docs-internal/scratchblocks.js"></script>
-        <script>
-            scratchblocks.renderMatching('.render-scratchblocks', {
-                style: 'scratch3'
-            });
-        </script>
-        
-</body>
-
+			<h3>Connector Reporter</h3>
+			<img src="connector.png" width="93.375" height="45"/>
+			<p>This reporter connects two different data reporters together and/or another connector reporter so you can send multiple pieces of data to the webhook.</p>
+		</div>
+	</body>
 </html>
