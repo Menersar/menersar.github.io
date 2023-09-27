@@ -12361,7 +12361,7 @@
         }),
         // !!! CHANGE !!!
         // docsURI: "https://extensions.turbowarp.org/box2d",
-        docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions/box2d",
+        docsURI: "https://menersar.github.io/sidekick-extensions/box2d",
         menuIconURI: menuIconURI,
         blockIconURI: blockIconURI,
         blocks: [

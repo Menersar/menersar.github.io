@@ -76,7 +76,7 @@ Other various small fixes
 
   // !!! CHANGE !!!
   // const EXAMPLE_IMAGE = 'https://extensions.turbowarp.org/dango.png';
-  const EXAMPLE_IMAGE = 'https://menersar.github.io/Sidekick/sidekick-extensions/dango.png';
+  const EXAMPLE_IMAGE = 'https://menersar.github.io/sidekick-extensions/dango.png';
 
   const blankImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAABRJREFUGFdj/P///38GBgYGRhgDAFfVB/vDfnUlAAAAAElFTkSuQmCC";
 

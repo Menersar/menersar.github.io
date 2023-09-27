@@ -237,7 +237,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: 'https://extensions.turbowarp.org'
-                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions'
+                defaultValue: 'https://menersar.github.io/sidekick-extensions'
               }
             }
           },
@@ -250,7 +250,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: 'https://extensions.turbowarp.org'
-                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions'
+                defaultValue: 'https://menersar.github.io/sidekick-extensions'
               },
               WIDTH: {
                 type: Scratch.ArgumentType.NUMBER,
@@ -279,7 +279,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: 'https://extensions.turbowarp.org'
-                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions'
+                defaultValue: 'https://menersar.github.io/sidekick-extensions'
               }
             }
           }

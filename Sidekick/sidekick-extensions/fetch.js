@@ -20,7 +20,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: 'https://extensions.turbowarp.org/hello.txt'
-                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions/hello.txt'
+                defaultValue: 'https://menersar.github.io/sidekick-extensions/hello.txt'
               }
             }
           }

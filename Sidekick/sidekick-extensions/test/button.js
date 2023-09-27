@@ -6,8 +6,8 @@
         id: "testbutton",
         name: "test 123",
         // !!! CHANGE !!!
-        // docsURI: 'https://mixality.github.io/Sidekick/sidekick-extensions',
-        docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions",
+        // docsURI: 'https://mixality.github.io/sidekick-extensions',
+        docsURI: "https://menersar.github.io/sidekick-extensions",
         blocks: [
           {
             blockType: Scratch.BlockType.BUTTON,

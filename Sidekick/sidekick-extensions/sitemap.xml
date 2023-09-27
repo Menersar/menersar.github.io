@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/</loc></url>
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/ar</loc></url>
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/box2d</loc></url>
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/bitwise</loc></url>
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/CST1229/zip</loc></url>
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/local-storage</loc></url>
-<url><loc>https://menersar.github.io/Sidekick/sidekick-extensions/CubesterYT/TurboHook</loc></url></urlset>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/</loc>
+    </url>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/ar</loc>
+    </url>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/box2d</loc>
+    </url>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/bitwise</loc>
+    </url>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/CST1229/zip</loc>
+    </url>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/local-storage</loc>
+    </url>
+    <url>
+        <loc>https://menersar.github.io/sidekick-extensions/CubesterYT/TurboHook</loc>
+    </url>
+</urlset>

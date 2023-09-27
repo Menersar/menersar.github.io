@@ -491,7 +491,7 @@
                 color3: "#af0100",
                 // !!! CHANGE !!!
                 // docsURI: "https://extensions.turbowarp.org/ar",
-                docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions/ar",
+                docsURI: "https://menersar.github.io/sidekick-extensions/ar",
                 blocks: [
                     {
                         opcode: "enterAR",

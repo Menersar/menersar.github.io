@@ -54,7 +54,7 @@
         name: "Zip",
         // !!! CHANGE !!!
         // docsURI: "https://extensions.turbowarp.org/CST1229/zip",
-        docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions/CST1229/zip",
+        docsURI: "https://menersar.github.io/sidekick-extensions/CST1229/zip",
 
         blockIconURI: extIcon,
 
@@ -84,7 +84,7 @@
                 // defaultValue: "http:/localhost:8000/hello.zip",
                 // !!! CHANGE !!!
                 // defaultValue: "https://extensions.turbowarp.org/hello.zip",
-                defaultValue: "https://menersar.github.io/Sidekick/sidekick-extensions/hello.zip",
+                defaultValue: "https://menersar.github.io/sidekick-extensions/hello.zip",
               },
             },
           },

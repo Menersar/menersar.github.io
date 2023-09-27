@@ -28,7 +28,7 @@
         menuIconURI: icon,
         // !!! CHANGE !!!
         // docsURI: "https://extensions.turbowarp.org/CubesterYT/TurboHook",
-        docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions/CubesterYT/TurboHook",
+        docsURI: "https://menersar.github.io/sidekick-extensions/CubesterYT/TurboHook",
 
         blocks: [
           {

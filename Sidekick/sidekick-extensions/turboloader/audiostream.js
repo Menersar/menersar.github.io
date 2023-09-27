@@ -40,7 +40,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: 'https://extensions.turbowarp.org/meow.mp3'
-                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions/meow.mp3'
+                defaultValue: 'https://menersar.github.io/sidekick-extensions/meow.mp3'
               }
             }
           },

@@ -96,7 +96,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: 'https://extensions.turbowarp.org/dango.png'
-                defaultValue: 'https://menersar.github.io/Sidekick/sidekick-extensions/sidekick.png'
+                defaultValue: 'https://menersar.github.io/sidekick-extensions/sidekick.png'
               },
               NAME: {
                 type: Scratch.ArgumentType.STRING,

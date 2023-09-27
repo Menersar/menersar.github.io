@@ -37,7 +37,7 @@
 
         // !!! CHANGE !!!
         // docsURI: "https://extensions.turbowarp.org/bitwise",
-        docsURI: "https://menersar.github.io/Sidekick/sidekick-extensions/bitwise",
+        docsURI: "https://menersar.github.io/sidekick-extensions/bitwise",
         menuIconURI: icon,
 
         blocks: [

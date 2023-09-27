@@ -35,7 +35,7 @@
                 type: Scratch.ArgumentType.STRING,
                 // !!! CHANGE !!!
                 // defaultValue: "https://extensions.turbowarp.org/robot.png",
-                defaultValue: "https://menersar.github.io/Sidekick/sidekick-extensions/robot.png",
+                defaultValue: "https://menersar.github.io/sidekick-extensions/robot.png",
               },
             },
             disableMonitor: true,
