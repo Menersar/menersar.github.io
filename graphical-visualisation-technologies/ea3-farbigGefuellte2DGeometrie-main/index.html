@@ -1,0 +1,113 @@
+<!DOCTYPE html5>
+<html>
+    <head>
+        <title>EA 3 – Farbig gefüllte (2D) Geometrie</title>
+        <meta charset="UTF-8">
+
+
+        <link rel="stylesheet" href="css/materialize.min.css" />
+
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/materialize.min.js"></script>
+    
+
+
+    
+        <link rel="stylesheet" href="styles.css" />
+
+
+        <script defer src="ea3.js"></script>
+      </head>
+        <body onload=start()>
+
+
+
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="../" class="brand-logo" style="padding-left:10px">EA 3 – Farbig gefüllte (2D) Geometrie</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Documentation</a></li>
+                    </ul>
+                </div>
+            </nav>
+        
+            <div id="container" class="container">
+                <div class="col s12">
+                    <div class="card">
+
+                        
+                        <br>
+                        <div class="cardImages">
+                        
+
+                        <canvas id='glcanvas' width=640 height=480 onclick="drehen();"></canvas>
+                        <canvas id="canvas"></canvas>
+                    </div>
+
+
+
+
+                        <div class="card-content">
+                            <!--Content-->
+                            <h5>Steuerung</h5>
+                            <p><b>R:</b> Hausmodell dreht sich kontinuierlich im Uhrzeigersinn.</p>
+                            <p><b>Linksklick auf Wireframe-Hausgerüst:</b> Modell dreht sich schrittweise im Uhrzeigersinn.</p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        
+            <footer class="page-footer" id="page-footer">
+                <div class="container">
+                    Author: Maite-Aileen Brandt
+                </div>
+            </footer>
+        
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>Documentation</h4>
+
+                    <h5>Steuerung</h5>
+                        <p><b>R:</b> Hausmodell dreht sich kontinuierlich im Uhrzeigersinn.</p>
+                        <p><b>Linksklick auf Wireframe-Hausgerüst:</b> Modell dreht sich schrittweise im Uhrzeigersinn.</p>
+                        
+                     
+                        <h5>Aufgabenstellung </h5>
+                        <p>Kolorieren Sie eine eigene 2D-Geometrie indem Sie nun Dreiecke (keine Linien) erzeugen (Sie können auf der Lösung der vorherigen Aufgabe aufbauen). Sie können dabei einfarbige Flächen oder auch Farbverläufe einsetzen.</p>                        
+
+                
+
+
+                        <h5>Umsetzung</h5>
+                        <p> Grundlagen für das Erstellen der 2D-Geometrie: Moodle Kurs-Materialien des Kurses Graphical Visualisation Technologies und vorherige Abgabe EA 2.</p>
+                        <p> Ich habe den Code nach den Moodle-Unterlagen so angepasst, dass Farben eingestellt werden können und die Lösung für EA 2 so angepasst, dass Dreiecke korrekt erzeugt werden.</p>
+                        <p> Ich habe, über die Angabe verschiedener Farben an den Eckpunkten, versucht einen Farbverlauf zu erstellen, der bei dem Haus den Eindruck vermitteln soll, dass es im Schnee steht.</p>
+                        <p> Zusätzlich habe ich bei dem Haus eine Tür hinzugefügt, um mehr mit den Farben herumzuspielen und um ein detaillierteres Ergebnis zu erhalten.</p>
+
+                        
+                        <h5>Anmerkungen</h5>
+                        <p>Bei meiner Umsetzung handelt es sich bei dem Haus um eine 3D-Geometrie, da ich auf der vorherigen Abgabe EA 2 aufgebaut habe.</p>
+                    </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+    </body>
+</html>
