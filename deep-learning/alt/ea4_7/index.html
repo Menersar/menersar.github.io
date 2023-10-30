@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TensorFlow.js Tutorial</title>
+
+    <!-- Import TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.1/dist/tf.min.js"></script>
+    <!-- Import tfjs-vis -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="extras/noUiSlider/nouislider.css" />
+
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="extras/noUiSlider/nouislider.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+</head>
+
+<body>
+    <nav class="nav-hidden" id="nav-hidden">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="padding-left:10px">EA 4: Language Model mit RNN</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light  modal-trigger" href="#modal1">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="loader loader-website-loading" id="loader-website-loading"></div>
+
+
+    <div id="container" class="container">
+
+        <div class="row">
+            <div class="col s12">
+
+                <div class="error-card card red" id="error-card">
+                    <div class="card-content white-text">
+                        <span class="card-title">Error!</span>
+                        <p id="error-message">Invalid value.</p>
+                    </div>
+                </div>
+                <div id="upload-and-example-form" class="upload-and-example-form">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Word prediction</span> <br />
+
+                            <div id="upload-tab">
+
+                                <p>Type in at least 5 words to get a word prediction:</p>
+
+
+                                <textarea class="materialize-textarea" type="text" oninput="eingabe()"
+                                    id="eingabefeld"></textarea>
+
+
+                                <br /> <br /> <br />
+                                <p>Set the number of word predictions you want to receive (default 5):</p> <br />
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div id="test-slider-2"></div> <br /><br /><br />
+                                    </div>
+                                </div>
+                                <br />
+
+
+                                <div id="predictedWords"><br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer" id="page-footer">
+        <div class="container">            <script src="test.js"></script>
+
+            Author: Maite-Aileen Brandt
+        </div>
+    </footer>
+
+    <div id="hidden" hidden="true"></div>
+
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dokumentation</h4>
+
+
+            <h5 style="text-align:justify">Aufgabenstellung</h5>
+
+            <p style="text-align:justify">Thematisch besch&auml;ftigt sich diese Ausarbeitung mit dem Trainieren eines
+                Language Models (LM) zur Wortvorhersage mit einem Recurrent Neural Network (RNN) und dem TensorFlow.js
+                (TFJS) Framework/API. Die Aufgabe bestand darin, ein RNN auf der Basis der Daten [1] zur Wortvorhersage
+                (Next Word Prediction) zu trainieren.<br />
+                Unterschiedliche Netzwerkarchitektur sollen untersucht werden und die finale Auswahl dokumentiert und
+                begr&uuml;ndet werden. Als Resultat soll notiert werden, wie oft die Vorhersage genau richtig ist und
+                wie oft das korrekte n&auml;chste Wort unter den ersten k Worten, die sie vorhersagen, liegt (mit k
+                gleich 5, 10, 20 und 100). Auch die Perplexity [2] [9] kann dabei als Ma&szlig; der Resultate genutzt
+                werden.</p>
+
+            <p style="text-align:justify">&nbsp;</p>
+
+            <h5 style="text-align:justify">Dokumentation</h5>
+
+            <p style="text-align:justify">Alle verwendeten Frameworks sollen aufgelistet und erkl&auml;rt werden (1-3
+                S&auml;tze), wozu diese jeweils verwendet werden. Zudem sollen die technischen Besonderheiten der
+                L&ouml;sung dokumentiert werden.<br />
+                Au&szlig;erdem soll die Implementierung der Logik und alles, was f&uuml;r die L&ouml;sung wichtig ist,
+                erl&auml;utert werden (Ansatz, Resultate, Quellen).</p>
+
+            <p style="text-align:justify">Es wurden die folgenden Frameworks eingesetzt:</p>
+
+            <ol>
+                <li style="text-align:justify">TensorFlow.js</li>
+                <li style="text-align:justify">TensorFlow</li>
+            </ol>
+
+            <p style="text-align:justify">Bei <strong>TensorFlow</strong> handelt es sich um eine
+                End-to-End-Open-Source-Plattform f&uuml;r maschinelles Lernen. Es verf&uuml;gt &uuml;ber ein
+                umfassendes, flexibles &Ouml;kosystem aus Tools, Bibliotheken und Community-Ressourcen, mit denen
+                Forscher den Stand der Technik im Bereich ML vorantreiben und Entwickler auf einfache Weise ML-basierte
+                Anwendungen erstellen und bereitstellen k&ouml;nnen.&nbsp;<br />
+                &Uuml;ber <strong>TensorFlow</strong> k&ouml;nnen Modelle zun&auml;chst mit Keras erstellt und trainiert
+                werden. Ein Tokenizer dient der Zerlegung von Plain-Text in Folgen von logisch zusammengeh&ouml;rigen
+                Einheiten, den Token.<br />
+                <strong>TensorFlow.js</strong> wurde eingesetzt, denn die Entwicklung in JavaScript erm&ouml;glicht die
+                Verwendung von maschinellem Lernen direkt im Browser. [3] [4]<br />
+                Vorab trainierte TensorFlow.js-, TensorFlow- oder TFLite-Modelle k&ouml;nnen im Web oder auf anderen
+                JS-Plattformen ausgef&uuml;hrt werden. [5]
+            </p>
+
+            <p style="text-align:justify"><br />
+                Als Grundlagen der Umsetzung dienten die Artikel &bdquo;Next Word Prediction with NLP and Deep
+                Learning&ldquo; von Bharath K [6] sowie &bdquo;Building a Next Word Predictor in Tensorflow&ldquo; [7]
+                von Priya Dwivedi. Vor allem letztere Quelle wurde f&uuml;r das Trainieren des Modells eingesetzt.</p>
+
+            <p style="text-align:justify">Da das Trainieren lange Ladezeiten mit sich zieht, wurde es separat vor der
+                Prediction unternommen. Das Modell zur Wortvorhersage wurde anhand eines Plenarprotokolle des Deutschen
+                Bundestags [1] trainiert, da es sich dabei um deutschen Text, mit keiner extrem hohen
+                Datengr&ouml;&szlig;e, handelt.&nbsp;</p>
+
+            <p style="text-align:justify">Nachdem das Modell trainiert wurde, habe ich die Funktionsweise der
+                Grundlagen, um eine Prediction umzusetzen, auf JavaScript &uuml;bertragen. Dabei dienten die
+                TensorFlow-Dokumentationen [8] als Hilfe. Ich habe mich daf&uuml;r, und f&uuml;r das Design,
+                grunds&auml;tzlich an der Funktionsweise der Wort-Prediction, wie sie &uuml;blicherweise bei
+                Handytastaturen eingesetzt wird, orientiert. Dadurch wollte ich eine m&ouml;glichst einfache und
+                &uuml;bersichtliche Funktionalit&auml;t f&uuml;r den Nutzer erzielen.</p>
+
+
+
+
+            <p style="text-align:justify">Das Modell verwendet den Long Short-Term Memory
+                (<strong>LSTM</strong>)-<strong>Algorithmus</strong>. Dar&uuml;ber sollen Ereignisse, die auch weit
+                auseinanderliegen, miteinander verkn&uuml;pft werden. Der Algorithmus eignet sich zudem gut zum Lernen
+                von Sequenzen.&nbsp;Die eingesetzte <strong>Loss-Funktion</strong> ist die
+                <strong>Categorical_Crossentropy</strong>, welche den <strong>Cross-Entropy-Loss </strong>zwischen Label
+                und Vorhersagen bestimmt. Diese Funktion definiert den Erwartungswert des Losses f&uuml;r eine
+                Verteilung &uuml;ber Labels.&nbsp;Dieser Verlust wird als Kreuzentropieverlust bezeichnet und ist einer
+                der am h&auml;ufigsten verwendeten Verluste f&uuml;r Klassifizierungsprobleme.It is the expected value
+                of the loss for a distribution over labels. Dieser Cross-Entropy-Loss wird f&uuml;r gew&ouml;hnlich als
+                Loss in Klassifikationsproblemen eingesetzt.&nbsp;Als <strong>Optimizer </strong>wurde <strong>Adam
+                </strong>mit einer <strong>Learning-Rate</strong> von <strong>0.001</strong> verwendet.&nbsp;Die
+                eingesetzte <strong>Optimierungsfunktion Softmax </strong>wandelt einen Vektor von Zahlen in einen
+                Vektor von Wahrscheinlichkeiten um, wobei die Wahrscheinlichkeiten jedes Wertes proportional zur
+                relativen Gr&ouml;&szlig;e jedes Wertes im Vektor sind. Die Softmax-Funktion erm&ouml;glicht uns also,
+                Wahrscheinlichkeitsverteilungen, beziehungsweise Klassenwahrscheinlichkeiten,&nbsp;zu erhalten. Die
+                Cross-Entropy-Loss-Funktion&nbsp;wird zusammen mit dem Softmax f&uuml;r eine Multi-Class-Klassifikation
+                genutzt.&nbsp;Aufgrund der Performance, beziehungsweise der hohen Zeiten zum Trainieren des Modells,
+                wurde eine Anzahl von <strong>25</strong> <strong>Epochen</strong> </strong>und einer
+                <strong>Batchsize </strong>von<strong> 64</strong> gew&auml;hlt.</span></span>
+            </p>
+
+            <!-- <p style="text-align:justify">Der nachfolgende Screenshot zeigt die Umsetzung.</p>
+
+            <p style="text-align:justify">__</p>-->
+
+            <p style="text-align:justify">Man kann W&ouml;rter in das Textfeld eingeben, die vorhergesagten W&ouml;rter
+                erscheinen ab 5 eingegebenen W&ouml;rtern. Klickt man auf eines der Predictions, wird es hinter den
+                geschriebenen Text
+                platziert. Die Anzahl der Predictions kann &uuml;ber den Slider eingestellt werden.</p>
+
+            <p style="text-align:justify"><br />
+                Es wurden einige W&ouml;rter, beziehungsweise S&auml;tze, zum Testen eingegeben, wie oft die Vorhersage
+                genau richtig ist und wie oft das korrekte n&auml;chste Wort unter den ersten k Worten, die sie
+                vorhersagen, liegt.&nbsp;Im Folgenden werden Beispiele dargestellt, bei denen die Vorhersagen genau
+                richtig oder jeweils unter den ersten 5, 10, 20 und 100 Worten ist.</p>
+
+            <h6 style="text-align:justify">S&auml;tze:</h6>
+
+            <ol>
+                <li style="text-align:justify">&nbsp;&quot;Hallo wie geht es dir heute&quot;</li>
+                <li style="text-align:justify">&quot;Das neue Gesetz wurde verabschiedet&quot;</li>
+                <li style="text-align:justify">&nbsp;&quot;Sehr geehrte Damen und Herren, ich begr&uuml;&szlig;e Sie zu
+                    der heutigen Sitzung&quot;</li>
+                <li style="text-align:justify">&nbsp;&quot;Im Angesicht der Tatsachen komme ich zu folgendem
+                    Schluss&quot;</li>
+                <li style="text-align:justify">&nbsp;&quot;K&ouml;nnen Sie mir eine Kopie dieses Gesetzesentwurfs
+                    anfertigen und sie mir auf meinen Schreibtisch legen&quot;</li>
+                <li style="text-align:justify">&nbsp;&quot;Gesch&auml;tzter Herr Pr&auml;sident&quot;</li>
+                <li style="text-align:justify">&nbsp;&quot;Die Zeit, in der wir uns gerade befinden, ist hinsichtlich
+                    der Finanz- und Haushaltspolitik entscheidend.&quot;</li>
+            </ol>
+
+            <h6 style="text-align:justify">Auswertung:</h6>
+
+
+            <ol>
+                <li style="text-align:justify">-</li>
+                <li style="text-align:justify">k = 100: Das Wort &quot;Gesetz&quot;</li>
+                <li style="text-align:justify">k = 20: Das Wort &quot;sie&quot;</li>
+                <li style="text-align:justify">-</li>
+                <li style="text-align:justify">k = 10: 1/2 Wort &quot;Gesetzes&quot;</li>
+                <li style="text-align:justify">-</li>
+                <li style="text-align:justify">k = 20: Das Wort &quot;die&quot;; k = 100: Die W&ouml;rter
+                    &quot;wir&quot;, &quot;gerade&quot;, &quot;ist&quot;, &quot;und&quot;</li>
+            </ol>
+
+            <h6 style="text-align:justify">Interpretation:</h6>
+
+            <p style="text-align:justify">Insgesamt betrachtet, f&auml;llt die Anzahl der richtigen Vorhersagen gering
+                aus. Vor allem, wie erwartet, bei S&auml;tzen die weniger gemeinsam haben mit dem Text, auf den
+                trainiert wurde &ndash; wie zum Beispiel Satz 1. Jedoch sind auch die Vorhersagen noch sehr ungenau bei
+                S&auml;tzen, die zur Thematik passen oder direkt dem gelernten Text entnommen sind &ndash; wie
+                beispielsweise Satz 6 und 7.</p>
+
+            <p style="text-align:justify">M&ouml;gliche Ursachen f&uuml;r diese Ergebnisse liegen wahrscheinlich in der
+                geringen Menge an Daten und vor allem darin, dass der Text viele Zahlen und spezielle Bezeichnungen, wie
+                Gesetzesbezeichnungen, sowie Namen enth&auml;lt. Ebenso k&ouml;nnte das gelernte Modell noch komplexer,
+                &uuml;ber die einstellbaren Metriken, herausgearbeitet werden. Auch beispielsweise eine h&ouml;here
+                Anzahl an Epochen k&ouml;nnte dazu beitragen, auch wenn das in l&auml;ngeren Zeiten f&uuml;r das Lernen
+                resultiert.</p>
+
+            <p style="text-align:justify">&nbsp;</p>
+
+            <h5 style="text-align:justify">Quellen</h5>
+
+            <p style="text-align:justify">[1]&nbsp;Plenarprotokolle des Deutschen Bundestags: <a
+                    href="https://www.bundestag.de/services/opendata">https://www.bundestag.de/services/opendata</a></p>
+
+            <p style="text-align:justify">[2]&nbsp;<a
+                    href="https://leimao.github.io/blog/Entropy-Perplexity/">https://leimao.github.io/blog/Entropy-Perplexity/</a>
+            </p>
+
+            <p style="text-align:justify">[3]&nbsp;<a href="https://www.tensorflow.org/">https://www.tensorflow.org/</a>
+            </p>
+
+            <p style="text-align:justify">[4]&nbsp;<a
+                    href="https://www.tensorflow.org/js">https://www.tensorflow.org/js</a></p>
+
+            <p style="text-align:justify">[5]&nbsp;<a
+                    href="https://www.tensorflow.org/learn">https://www.tensorflow.org/learn</a></p>
+
+            <p style="text-align:justify">[6]&nbsp;<a
+                    href="https://towardsdatascience.com/next-word-prediction-with-nlp-and-deep-learning-48b9fe0a17bf">https://towardsdatascience.com/next-word-prediction-with-nlp-and-deep-learning-48b9fe0a17bf</a>
+            </p>
+
+            <p style="text-align:justify">[7]&nbsp;<a
+                    href="https://towardsdatascience.com/building-a-next-word-predictor-in-tensorflow-e7e681d4f03f">https://towardsdatascience.com/building-a-next-word-predictor-in-tensorflow-e7e681d4f03f</a>
+            </p>
+
+            <p style="text-align:justify">[8]&nbsp;<a
+                    href="https://js.tensorflow.org/api/latest/">https://js.tensorflow.org/api/latest/</a></p>
+
+            <p style="text-align:justify">[9]&nbsp;<a
+                    href="https://homes.cs.washington.edu/~nasmith/papers/plm.17.pdf">https://homes.cs.washington.edu/~nasmith/papers/plm.17.pdf</a>
+            </p>
+
+
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Import the main script file -->
+    <script src="index.js"></script>
+</body>
+
+</html>

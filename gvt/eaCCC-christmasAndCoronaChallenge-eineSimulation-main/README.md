@@ -1,1 +1,0 @@
-# eaCCC-christmasAndCoronaChallenge-eineSimulation

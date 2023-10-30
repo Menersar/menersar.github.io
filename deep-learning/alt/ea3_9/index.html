@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TensorFlow.js Tutorial</title>
+
+    <!-- Import TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <!-- Import tfjs-vis -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="extras/noUiSlider/nouislider.css" />
+
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="extras/noUiSlider/nouislider.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+</head>
+
+<body>
+    <nav class="nav-hidden" id="nav-hidden">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="padding-left:10px">EA 3: Regression mit FFNN</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light  modal-trigger" href="#modal1">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="loader loader-website-loading" id="loader-website-loading"></div>
+
+
+    <div id="container" class="container">
+
+        <div class="row">
+            <div class="col s6">
+
+                <div class="error-card card red" id="error-card">
+                    <div class="card-content white-text">
+                        <span class="card-title">Error!</span>
+                        <p id="error-message">Invalid value.</p>
+                    </div>
+                </div>
+                <div id="upload-and-example-form" class="upload-and-example-form">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">Model Configuration</span>
+
+                            <div id="upload-tab">
+
+                                <div class="input-field col s12">
+                                    <select name="select" id="select">
+                                        <option value="none" selected>none</option>
+                                        <option value="sigmoid">sigmoid</option>
+                                        <option value="elu">ELU</option>
+                                        <option value="relu">ReLU</option>
+                                        <option value="selu">SELU</option>
+                                    </select>
+                                    <label>Activation</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select name="optimizer" id="optimizer">
+                                        <option value="sgd">SGD</option>
+                                        <option value="adagrad">Adagrad</option>
+                                        <option value="adadelta">Adadelta</option>
+                                        <option value="adam" selected>Adam</option>
+                                        <option value="adamax">Adamax</option>
+                                        <option value="rmsprop">RMSProp</option>
+                                    </select>
+                                    <label>Optimizer</label>
+                                </div>
+
+
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="neurons" type="number" min="1" max="50"
+                                                value="5" class="validate">
+                                            <label for="neurons">Neurons (1 to 50)</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="learningRate" min="0.001" max="1"
+                                                step="0.001" type="number" value="0.100" class="validate">
+                                            <label for="learningRate">Learning rate (0.001 to 1)</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="hiddenLayers" min="0" max="100"
+                                                type="number" value="1" class="validate">
+                                            <label for="hiddenLayers">Hidden layers (0 to 100)</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="epochs" min="1" max="500" type="number"
+                                                value="50" class="validate">
+                                            <label for="epochs">Epochs (1 to 500)</label>
+                                        </div>
+                                        <!-- <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="min" min="-100" max="0" type="number"
+                                                value="-1" class="validate">
+                                            <label for="min">Trainings data range start (-100 to 0)</label>
+                                        </div>
+                                         <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="max" min="0" max="100" type="number"
+                                                value="1" class="validate">
+                                            <label for="max">Trainings data range end (0 to 100)</label>
+                                        </div>-->
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="numberValues" min="1" max="10000"
+                                                type="number" value="100" class="validate">
+                                            <label for="numberValues">Amount of training data N (1 to 10000)</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Default weights (random between -1 and 1)" id="weight"
+                                                min="-1" max="1" step="0.01" type="number" value="" class="validate">
+                                            <label for="weight">Weight (-1 to 1)</label>
+                                        </div>
+                                        <div class="col s12">
+                                            <label>Trainings data range (-100 to 100)</label><br /> <br />
+                                            <div id="test-slider"></div> <br /><br />
+                                        </div>
+
+                                    </div>
+                            </div>
+                            </form>
+
+                            <button class="btn waves-effect waves-light btn-large" id="button" type="submit"
+                                name="action">Train
+                                model and predict
+                                <!-- <i class="material-icons right">send</i> -->
+                            </button><br /><br />
+
+                            <p>Select preset:</p>
+                            <button class="btn waves-effect waves-light btn-small" id="" type="submit"
+                                onclick="good()">Good
+                            </button>
+                            <button class="btn waves-effect waves-light btn-small" id="" type="submit"
+                                onclick="under()">Underfitting
+                            </button>
+                            <button class="btn waves-effect waves-light btn-small" id="" type="submit"
+                                onclick="over()">Overfitting
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6">
+                <div class="error-card card red" id="error-card">
+                    <div class="card-content white-text">
+                        <span class="card-title">Error!</span>
+                        <p id="error-message"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6">
+
+                <div class="card prediction-card" id="prediction-card">
+                    <div class="card-content">
+                        <span class="card-title">Predict Single Number</span>
+
+                        <p style="text-align: center;">Type in a number for prediction:</p>
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Type value here" id="xwert" type="number">
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <div class="col s12">
+                            <div class="row">
+
+
+                                <button style="width: 100%;" class="btn waves-effect waves-light btn-large"
+                                    id="singleButton" type="submit" name="action">Predict
+                                </button>
+                            </div>
+                            <div class="row"> </div>
+                        </div>
+
+                        <div class="col s12">
+                            <div class="row">
+                                <p style="text-align: center; font-size: x-large;"><b>OR</b></p>
+                            </div>
+                        </div><br /><br />
+                        <div class="col s12">
+                            <div class="row">
+                                <p style="text-align: center;">Use the slider below:</p>
+                            </div>
+                        </div>
+
+                        <br /><br />
+                        <div class="col s12">
+                            <div class="row">
+                                <div id="test-slider-2"></div> <br /><br /><br />
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col s8">
+
+                                <div id="ywertanzeige">Model's prediction:</div>
+                                <div id="yWertRealAnzeige">Real value:</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6">
+                <div class="card image-card results-card" id="results-card">
+                    <div class="card-content">
+                        <span class="card-title">Results</span>
+                        <div id="test"></div>
+                        <div id="test2"></div>
+                        <div id="test3"></div>
+                        <div id="testgraph"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="page-footer" id="page-footer">
+        <div class="container">
+            Author: Maite-Aileen Brandt
+        </div>
+    </footer>
+
+    <div id="hidden" hidden="true"></div>
+
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dokumentation</h4>
+
+
+            <h5>Aufgabenstellung</h5>
+            <p>Die Aufgabe bestand darin, ein Feed-Forward-Neural-Network (FFNN) zur Regression der folgenden
+                reellwertigen Funktion zu nutzen.</p>
+            <p>Die Anwendung soll dabei interaktiv Input-Daten vom Nutzer vorhersagen k&ouml;nnen. Er kann dabei
+                Werte
+                angeben, die vorhergesagt werden sollen.</p>
+            <p>Als <strong>Objektivfunkton</strong>/<strong>Loss</strong> soll der MSE verwendet werden.
+                <strong>Input-</strong> und <strong>Output-Neuronen</strong> sollen <strong>linear</strong> sein.
+                Als
+                <strong>Aktivierungsfunktion </strong>soll demnach &bdquo;<strong>none</strong>&ldquo;
+                (<strong>y=x</strong>) eingesetzt werden.
+            </p>
+            <p><strong>&nbsp;</strong></p>
+            <h5>Experimente und Fragestellungen</h5>
+            <p>Die Gr&ouml;&szlig;e des Netzwerkes und die Anzahl N der Trainingsdaten sollen so eingestellt werden,
+                dass Sie die Ph&auml;nomene Under- und Overfitting simulieren k&ouml;nnen. Zum Erzeugen der
+                Trainingsdaten sollen N zuf&auml;llige gleichverteilte x-Werte gesampelt und y(x) dazu berechnet
+                werden.
+            </p>
+            <p>Es soll anhand unterschiedlichen Trainingsdaten, der Netzwerkarchitektur und der Parameter der
+                Neuronen
+                und des Lernalgorithmus experimentiert werden, wobei die folgenden Punkte explizit einstellbar sind.
+            </p>
+            <ol>
+                <li><strong>Anzahl </strong>und<strong> Auswahl </strong>der<strong> N
+                        Trainingsdatenpunkte</strong> </li>
+                <li><strong>Anzahl </strong>der<strong> Hidden Layer </strong>und<strong> Neuronen</strong> </li>
+                <li><strong>Initialisierung </strong>der<strong> Gewichte</strong> </li>
+                <li> <strong>Aktivierungsfunktionen</strong> </li>
+                <li> <strong>Lernrate </strong>und<strong> Optimizer </strong> </li>
+                <li> <strong>Anzahl </strong>der<strong> Trainings-Epochs</strong>
+            </ol>
+            <p>Es soll beantwortet werden, was das <strong>beste Ergebnis</strong> ist, dass so
+                <strong>erzielbar</strong> ist. Dies soll <strong>dokumentiert</strong> und die
+                <strong>Parameter</strong> und <strong>Einstellungen</strong> begr&uuml;ndet sowie, in dem
+                Zusammenhang,
+                die Begriffe <strong>Bias</strong> und <strong>Varianz</strong> erkl&auml;rt werden.
+            </p>
+            <p>&nbsp;</p>
+            <h5>Umsetzung</h5>
+            <p>Zuerst habe ich mir die reellwertige Funktion y(x) = (x+0.8)*(x-0.2)*(x-0.3)*(x-0.6) &uuml;ber
+                <strong>WolframAlpha</strong> [1] plotten lassen, dabei ergeben sich folgende grafische
+                Darstellungen.
+            </p>
+            <img src="Bild1.png">
+            <p>&nbsp;</p>
+            <p>Anhand des Tutorials &bdquo;<strong>TensorFlow.js &mdash; Making Predictions from 2D
+                    Data</strong>&ldquo;
+                [3] und mithilfe der <strong>TensorFlow-Dokumentation</strong> [4] habe ich den
+                <strong>Code</strong>
+                f&uuml;r die Anwendung erstellt.
+            </p>
+            <p>Zum <strong>Erzeugen der Trainingsdaten</strong> werden <strong>N zuf&auml;llige gleichverteilte
+                    x-Werte</strong> gesampelt und <strong>y(x)</strong> dazu berechnet.</p>
+            <p>&Uuml;ber die Anwendung ist es m&ouml;glich, die <strong>Anzahl</strong> und <strong>Auswahl</strong>
+                der
+                <strong>N Trainingsdatenpunkte</strong>, die <strong>Anzahl</strong> der <strong>Hidden
+                    Layer</strong>
+                und <strong>Neuron</strong>, die <strong>Initialisierung </strong>der<strong> Gewichte</strong>, die
+                <strong>Aktivierungsfunktionen</strong>, <strong>Lernrate</strong> und <strong>Optimizer</strong>
+                sowie
+                die <strong>Anzahl</strong> der <strong>Trainings-Epochs</strong> einzustellen. Ein Nutzer kann
+                au&szlig;erdem einen <strong>Wert angeben</strong>, der ihm darauf <strong>vorhergesagt</strong>
+                wird.
+            </p>
+            <p>&Uuml;ber die einstellbaren Parameter habe ich verschiedene <strong>Experimente</strong>
+                durchgef&uuml;hrt. Ich habe dar&uuml;ber versucht, die Ph&auml;nomene <strong>Under-</strong> und
+                <strong>Overfitting</strong> zu simulieren sowie die Anwendung auf <strong>Einstellungen f&uuml;r
+                    gute
+                    Ergebnisse</strong> untersucht.
+            </p>
+            <p>Als <strong>Objektivfunkton/Loss</strong> wurde dabei der <strong>MSE</strong> verwendet.
+                <strong>Input-</strong> und <strong>Output-Neuronen</strong> sind <strong>linear</strong>.
+            </p>
+            <p>&nbsp;</p>
+            <h5>Ergebnisse</h5>
+            <p>F&uuml;r <strong>gute Ergebnisse</strong> haben sich bei meiner Umsetzung die folgenden Werte
+                bew&auml;hrt.</p>
+            <ol>
+                <li><strong>Anzahl </strong>der<strong> N Trainingsdatenpunkte: </strong>500</li>
+                <li><strong>Auswahl </strong>der<strong> N Trainingsdatenpunkte: </strong>-1<strong> bis </strong>1
+                </li>
+                <li><strong>Anzahl </strong>der<strong> Hidden Layer: </strong>2</li>
+                <li><strong>Anzahl </strong>der<strong> Neuronen: </strong>50</li>
+                <li><strong>Aktivierungsfunktion: </strong>ReLU</li>
+                <li><strong>Lernrate: </strong>0,01</li>
+                <li><strong>Optimizer: Adam</strong></li>
+                <li><strong>Anzahl </strong>der<strong> Trainings-Epochs: </strong>50</li>
+            </ol>
+            <p>Nach einigen Experimenten hat sich herausgebildet, dass diese Werte sich gut aber nicht zu perfekt an
+                die
+                Kurve ann&auml;hern, weshalb kein Under- oder Overfitting vorherrscht.</p>
+            <img src="Bild2.png">
+            <p>&nbsp;</p>
+            <p>Um ein <strong>Underfitting-Ph&auml;nomen</strong> hervorzurufen, wurden folgende Werte verwendet.
+            </p>
+            <ol>
+                <li><strong>Anzahl </strong>der<strong> N Trainingsdatenpunkte: </strong>20</li>
+                <li><strong>Auswahl </strong>der<strong> N Trainingsdatenpunkte: </strong>0<strong> bis </strong>100
+                </li>
+                <li><strong>Anzahl </strong>der<strong> Hidden Layer: </strong>0</li>
+                <li><strong>Anzahl </strong>der<strong> Neuronen: </strong>10</li>
+                <li><strong>Aktivierungsfunktion: </strong>ReLU</li>
+                <li><strong>Lernrate: </strong>0,01</li>
+                <li><strong>Optimizer: </strong>Adam</li>
+                <li><strong>Anzahl </strong>der<strong> Trainings-Epochs: </strong>20</li>
+            </ol>
+            <p>Hier spielt vor allem die geringe Anzahl an Hidden-Layer eine Rolle sowie die Auswahl der
+                Trainingsdatenpunkte, welche einen nicht sehr repr&auml;sentativen Bereich widerspiegeln. Auch die
+                Anzahl der Neuronen ist relativ gering, sowie die Anzahl der Trainingsdatenpunkte, weshalb diese
+                auch
+                nicht sehr repr&auml;sentativ sind. Ebenso bedeutet eine kleine Epochen-Anzahl eine geringe
+                Anpassung an
+                die Trainingsdaten.</p>
+            <img src="Bild3.png">
+
+            <p>&nbsp;</p>
+            <p>Um ein <strong>Overfitting-Ph&auml;nomen</strong> hervorzurufen, wurden folgende Werte verwendet.</p>
+            <ol>
+                <li><strong>Anzahl </strong>der<strong> N Trainingsdatenpunkte: </strong>1000</li>
+                <li><strong>Auswahl </strong>der<strong> N Trainingsdatenpunkte: </strong>-1<strong> bis </strong>1
+                </li>
+                <li><strong>Anzahl </strong>der<strong> Hidden Layer: </strong>10</li>
+                <li><strong>Anzahl </strong>der<strong> Neuronen: </strong>20</li>
+                <li><strong>Aktivierungsfunktion: </strong>ReLU</li>
+                <li><strong>Lernrate: </strong>0,01</li>
+                <li><strong>Optimizer: </strong>Adam</li>
+                <li><strong>Anzahl </strong>der<strong> Trainings-Epochs: </strong>50</li>
+            </ol>
+            <p>Um ein Overfitting hervorzurufen sind Daten notwendig, welche ungef&auml;hr gegenteilig der Werte des
+                Underfittings gestaltet sind. Vor allem spielen die Auswahl eines repr&auml;sentativen
+                Trainingsdatenbereichs, mehr Datenpunkte und eine hohe Anzahl an Hidden-Layers eine Rolle.</p>
+            <img src="Bild4.png">
+            <p>&nbsp;</p>
+            <h5>Bias und Varianz</h5>
+            <p><strong>Overfitting</strong> bedeutet eine ann&auml;hernd perfekte vorhersage oder Anpassung des
+                Modells
+                an jeden Punkt der Trainingsdaten. Ein komplexes, parameterreiches Modell, also ein neuronales Netz
+                mit
+                sehr vielen Schichten und sehr vielen Gewichten merkt sich im Extremfall alle Datenpunkte und
+                interpoliert zwischen ihnen.</p>
+            <p>Liegt andersherum beispielsweise ein Gewicht vom Input direkt zum Output vor, w&uuml;rden ein
+                lineares
+                Modell gelernt werden, in sich das Output-Unit nur einem Input mit einem Parameter und einem Bias
+                ergibt. In dem Fall w&uuml;rde eine Gerade in die Daten fitten, sprich die Daten w&uuml;rden
+                <strong>underfittet</strong>. Die Komplexit&auml;t des Modells reicht demnach nicht aus, um die
+                Daten zu
+                repr&auml;sentieren.
+            </p>
+            <p>Beide Modelle w&uuml;rden hohe <strong>Generalisierungsfehler</strong> bedeuten. Das underfittete
+                w&uuml;rde zu stark, das overfittete zu wenig generalisieren.</p>
+            <p><strong>Komplexe Modelle</strong> haben generell eine <strong>gro&szlig;e Varianz</strong>, da sie
+                sich
+                mit jedem neuen Trainingsdatensatz oder Sample stark ver&auml;ndern. Es besteht also eine
+                gro&szlig;e
+                Abh&auml;ngigkeit von den Trainingsdaten. Jedoch fittet es die Daten sehr stark, es liegt also eine
+                hohe
+                Datenapproximation vor beziehungsweise es hat ein <strong>geringes Bias</strong>, welcher die
+                Abweichung
+                des Modells von der Fit-Funktion, also der Ground Truth, angibt. Bei zu einfachen Modellen ist es
+                genau
+                andersherum.</p>
+            <p>Je <strong>mehr Daten</strong> zu Verf&uuml;gung stehen, desto mehr nimmt die
+                <strong>Varianz</strong> ab
+                &ndash; das sollte vor allem bei gro&szlig;en und komplexen Modellen, bei denen die Varianz hoch
+                ist,
+                beachtet werden. Wenn die <strong>Zielfunktion sehr komplex</strong> ist, erh&ouml;ht sich der
+                <strong>Bias</strong> &ndash; das sollte wiederrum bei einfachen Modellen beachtet werden, denn
+                komplexere reduzieren den Bias.
+            </p>
+            <p>Demnach ist es ein Ziel, dass das Modell <strong>optimal generalisiert</strong>, um neue Datenpunkte,
+                sprich Testdaten, <strong>richtig vorherzusagen</strong>. Die <strong>Komplexit&auml;t des
+                    Modells</strong> sollte dabei zur <strong>Komplexit&auml;t der Zielfunktion</strong> passen. Um
+                das
+                zu gew&auml;hrleisten, sollte die <strong>Komplexit&auml;t des Problems</strong> und die
+                <strong>vorhandenen Daten</strong> bekannt sein, um das <strong>Modell</strong> entsprechend
+                auszuw&auml;hlen. [2]
+            </p>
+            <p>&nbsp;</p>
+            <h5>Quellen</h5>
+            <p>[1] WolframAlpha, <a
+                    href="https://www.wolframalpha.com/input/?i=%28x%2B0.8%29*%28x-0.2%29*%28x-0.3%29*%28x-0.6%29">https://www.wolframalpha.com/input/?i=%28x%2B0.8%29*%28x-0.2%29*%28x-0.3%29*%28x-0.6%29</a>,
+                zuletzt abgerufen am 29.05.2021.</p>
+            <p>[2] Deep Learning Online Studienmodul, Prof. Dr. Felix Gers, zuletzt abgerufen am 29.05.2021.</p>
+            <p>[3] TensorFlow.js &mdash; Making Predictions from 2D Data, Yannick Assogba, <a
+                    href="https://www.tensorflow.org/js/tutorials/training/linear_regression">https://www.tensorflow.org/js/tutorials/training/linear_regression</a>,
+                zuletzt abgerufen am 31.05.2021.</p>
+            <p>[4] TensorFlow JavaScript, <a href="https://www.tensorflow.org/js">https://www.tensorflow.org/js</a>,
+                zuletzt abgerufen am 31.05.2021.</p>
+
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Import the main script file -->
+    <script src="index.js"></script>
+</body>
+
+</html>

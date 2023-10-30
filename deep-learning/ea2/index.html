@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EA 2: Spiking Neurons (Leaky-Integrate-and-Fire-Model)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/icon.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/scripts.js" defer></script>
+</head>
+
+
+<body>
+    <nav class="nav-hidden" id="nav-hidden">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="padding-left:10px">EA 2: Spiking Neurons
+        (Leaky-Integrate-and-Fire-Model)</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light  modal-trigger" href="#modal1">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="loader loader-website-loading" id="loader-website-loading"></div>
+
+    <div id="container-game" class="container-game" style="width: 1025px; height: 600px;">
+
+        <div class=" row">
+            <div class="col s12">
+
+                <div id="upload-and-example-form" class="upload-and-example-form">
+
+                    <div class="card">
+                        <div class="card-content">
+                            <div id="upload-tab">
+                                <canvas id="unity-canvas" style="width: 960px; height: 600px; background: #231F20"></canvas>
+                                <script src="Build/5.loader.js"></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="page-footer" id="page-footer">
+        <div class="container">
+            Author: Maite-Aileen Brandt
+        </div>
+    </footer>
+
+    <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <h4>Dokumentation</h4>
+            <h5>Umsetzung</h5>
+            <p>Für die Umsetzung habe ich die <strong>Unity</strong>-Game-Engine eingesetzt. Zum einen aufgrund des großen Spektrums der visuellen Echtzeit-Darstellung, zum anderen aufgrund bereits vorhandener Erfahrung im Umgang mit der Engine. Zusätzlich
+                unterstützt Unity den <strong>WebGL</strong>-Export.</p>
+            <p>Ich habe mich an dem <strong>Code</strong> des Artikels &bdquo;Leaky Integrate and Fire neuron with Tensorflow&ldquo; [1] von David Corvoysier für die Programmierung der Neuronen und Synapsen orientiert, welcher mir zudem das notwendige Hintergrundwissen
+                von <strong>LIF-Modellen</strong> vermitteln konnte.</p>
+            <p>Für die <strong>Steuerung</strong> habe ich mir das Spike Projekt [2] von Dmitry V'yal zum Teil als Vorbild genommen.
+            </p>
+            <p>Die <strong>visuelle Präsentation</strong> orientiert sich teilweise an dem Projekt von Steven de Salas, welches im Artikel &bdquo;Asynchronous Neural Networks in JavaScript&ldquo; vorgestellt wird [3] [4] [5]. Ebenso diente die Anwendung
+                Neuronify [6] als Vorbild.</p>
+            <p>[1] <a href="http://www.kaizou.org/2018/07/lif-neuron-tensorflow.html">http://www.kaizou.org/2018/07/lif-neuron-tensorflow.html</a><br /> [2] <a href="https://github.com/akamaus/Spike">https://github.com/akamaus/Spike</a><br /> [3] <a href="https://desalasworks.com/article/asynchronous-neural-networks-in-javascript/">https://desalasworks.com/article/asynchronous-neural-networks-in-javascript/</a><br
+                /> [4] <a href="https://sdesalas.github.io/fusspot/">https://sdesalas.github.io/fusspot/</a><br /> [5] <a href="https://github.com/sdesalas/botbrains">https://github.com/sdesalas/botbrains</a><br /> [6] <a href="https://ovilab.net/neuronify/">https://ovilab.net/neuronify/</a></p>
+            <h5>Anwendung</h5>
+            <p>Die Aufgabe bestand darin, eine <strong>interaktive Animation</strong> zum <strong>visuellen
+          Experimentieren</strong> mit einem <strong>Spiking Neural Network</strong> (SNN) zu erstellen.</p>
+            <p>Zu diesem Zweck habe ich <strong>zwei verschiedene Unity-Szenen</strong> erstellt, die vom Nutzer folgendermaßen auswählbar sind.&nbsp;</p>
+            <img src="Bild1.png">
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 1: Auswahl der zwei Unity-Szenen</p>
+
+            <p>In der ersten Szene, siehe folgende Abbildung, kann der Nutzer <strong>Neuronen</strong> und
+                <strong>Verbindungen zwischen Neuronen</strong> <strong>manuell erstellen</strong>, zur Bedienung wird eine
+                <strong>Hilfe-Funktion</strong> bereitgestellt.
+            </p>
+            <img src="Bild2.png">
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 2: Manuelle Erstellung von Netzwerken</p>
+
+            <p><strong>Neuronen</strong> und <strong>Verbindungen</strong> sind auswählbar, woraufhin die zugehörigen
+                <strong>Parameter</strong> dargestellt werden und über Buttons <strong>einstellbar</strong> sind, siehe Abbildung 3.
+            </p>
+            <img src="Bild3.png">
+
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 3: Ausgewähltes Neuron</p>
+            <p>Der <strong>Fire-Button</strong> ermöglicht ein Feuern des ausgewählten Neurons hervorzurufen. Die Buttons
+                <strong>-</strong> und <strong>+</strong> verringern und erhöhen die angegebenen <strong>Parameter</strong>. Das
+                <strong>Membranpotential</strong>, der <strong>Eingangsstrom</strong> und der <strong>Index der
+          Pre-Synapse</strong>, von welcher ein <strong>Spike</strong> kommt, werden jeweils in
+                <strong>Grafen</strong> über die <strong>Zeit</strong> dargestellt. Die <strong>Simulationsgeschwindigkeit</strong> ist zusätzlich über einen Slider einstellbar, standardmäßig ist jeder <strong>Zeitschritt</strong> <strong>t = t +
+          dt</strong> mit <strong>dt = 1</strong>. Es wird ein <strong>Sound</strong> abgespielt, sobald Neuronen feuern &ndash; diese Sounds sind über den <strong>Mute</strong>-Button deaktivierbar. Über den <strong>Main-Menu</strong>-Button gelangt
+                der Nutzer wieder zurück zur Szenen-Auswahl.
+            </p>
+            <p>Über den Button <strong>Premade Examples</strong> der Szenenauswahl gelangt der Nutzer zu folgender Darstellung.
+            </p>
+            <img src="Bild4.png">
+
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 4: Premade Examples</p>
+            <p>Hier habe ich eine <strong>Blob-Architektur</strong> aus Neuronen und Verbindungen erstellt, jedes Neuron hat eine bestimmte Wahrscheinlichkeit mit einem bestimmten anderen verbunden zu sein. Ich habe daraufhin jeweils das gleiche Netzwerk
+                mit <strong>unterschiedlichen voreingestellten Parametern</strong> versehen, um deren Auswirkung auf das gesamte Netz beobachten zu können.</p>
+            <p>Zwischen den unterschiedlichen <strong>Beispielen</strong> kann der Nutzer mit den Buttons <strong>&lt;
+          Prev</strong> und <strong>Next &gt; navigieren</strong>. Außerdem ist es möglich die
+                <strong>Kamera</strong>, über Gedrückthalten der rechten Maustaste und bewegen der Maus, zu
+                <strong>rotieren</strong> und, mit den Tasten W A S D, zu <strong>bewegen</strong>.
+            </p>
+            <p>Auch in dieser Szene sind die <strong>Neuronen</strong> und <strong>Verbindungen</strong>
+                <strong>auswählbar</strong>, um auch hier die <strong>Parameter</strong> nach belieben
+                <strong>einzustellen</strong> oder über die <strong>Grafen</strong>, wie folgt, zu
+                <strong>beobachten</strong>.
+            </p>
+            <img src="Bild5.png">
+
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 5: Ausgewähltes Neuron in einem Blob</p>
+
+            <h5>Phänomene der Sättigung und Versiegen der Signale in einem SNN</h5>
+            <p>Diese entstehen durch <strong>Verstärkung</strong> beziehungsweise <strong>Dämpfung</strong>. Ein
+                <strong>Aufschaukeln</strong> des Netzwerks in eine Aktivitätsübersättigung kann unterschiedlich bewältigt werden. Zum einen bewirkt die <strong>Erhöhung </strong>des<strong> Neuronal-Membran-Resistance</strong> das
+                <strong>Membran-Potential</strong>, sobald eine Pre-Synapse einen Spike liefert. Wird zudem das
+                <strong>Membrane-Threshold-Potential verringert</strong>, wird ein Spike bereits mit geringer Spannung hervorgerufen. Je <strong>geringer</strong> die <strong>Membrane-Time-Constant </strong>sowie
+                <strong>Synaptic-Time-Constant</strong> (auf der Neuronenverbindung einstellbar) desto langsamer wird die Spannung an dem Neuron abgebaut. Eine <strong>geringe</strong> <strong>Resting-Period-Duration</strong> bewirkt eine kürzere Zeit
+                in der Resting-Phase, nachdem ein Neuron gespiked hat. Ist zudem das
+                <strong>Membrane-Resting-Potential</strong> <strong>erhöht</strong>, liegt eine Spannung nach der Resting-Phase des Neurons vor, welche bereits näher an dem Spiking-Threshhold liegt und demnach ein geringerer Stom nötig ist, um die Neuronen
+                zum Spiken zu bringen. Ebenso tragen Erhöhung der <strong>Efficacy</strong> und
+                <strong>Neuron-Synaptic-Charge</strong> der Verbindungen zu hohen Input-Currents bei. Ein <strong>geringer
+          zeitlicher Abstand zwischen den Spikes</strong> von Pre-Synaptsen ist zusätzlich ein Faktor, welcher dazu beiträgt, dass die Spannung an Neuronen nicht so schnell abfällt.
+            </p>
+            <p>In <strong>Beispiel 10</strong> der Premade-Examples-Szene, siehe folgende Abbildung, wurden diese Werte eingestellt.
+            </p>
+            <img src="Bild6.png">
+
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 6: Beispiel Maximale Verstärkung</p>
+            <p>Damit <strong>Signale</strong> insgesamt immer weiter nachlassen, kann im Prinzip genau gegenteilig vorgegangen werden, das Ergebnis ist in Beispiel 11 zu sehen, siehe Abbildung 7.</p>
+            <img src="Bild7.png">
+
+            <p style="font-size: smaller; margin-block-start: 0em;">Abbildung 7: Beispiel Maximale Dämpfung</p>
+
+
+            <h5> Experimente und Fragestellungen</h5>
+            <ol type="a">
+
+                <li>Experimentieren Sie mit unterschiedlich dichter und starker (Synapsen) Vernetzung.</li>
+
+                Es wurde bereits festgestellt, dass eine starke Synapsen-Vernetzung zu höheren Input-Currents der Neuronen führt. Bei höherer Anzahl an Synapsen steigt die Wahrscheinlichkeit, dass mehr Synapsen spiken, welche zusammen einen höheren Input Strom erzeugen
+                und zum schnelleren Spiken des Neurons führt. Zudem verringern sich die Abstände der Spikes und Spannungen können weniger stark abgebaut werden bis zum nächsten Spike.
+
+
+                <li>Welchen Einfluss hat die initiale Anregung des Netzes auf den Endzustand.</li>
+                Die initiale Anregung führt dazu, dass der Spiking-Threshhold bereits zu Beginn näher ist und die Neuronen so schneller spiken, beziehungsweise mit geringerer Input-Stromstärke.
+
+
+                <li>Welche anderen Dynamiken außer der Sättigung und dem Versiegen von Aktivität ist prinzipiell möglich? Gelingt es Ihnen Eine solche Dynamik zu erzeugen?</li>
+                Als weitere Dynamik wäre ein konstantes Spiken innerhalb des Netzes zu nennen, was beispielsweise durch Anlegen eines konstanten Input-Currents an ein Neuron und mit Parametern, welche das System nicht dämpfen, erreicht werden kann.
+
+            </ol>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

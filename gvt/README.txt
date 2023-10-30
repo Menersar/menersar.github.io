@@ -1,1 +1,0 @@
-Projektaufgaben Graphical Visualisation Technologies WS21/22

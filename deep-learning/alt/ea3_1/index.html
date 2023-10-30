@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TensorFlow.js Tutorial</title>
+
+    <!-- Import TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <!-- Import tfjs-vis -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@1.0.2/dist/tfjs-vis.umd.min.js"></script>
+
+    <link rel="stylesheet" href="css/materialize.min.css" />
+    <link rel="stylesheet" href="css/icon.css">
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+
+</head>
+
+<body>
+    <nav class="nav-hidden" id="nav-hidden">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo" style="padding-left:10px">EA 2: Spiking Neurons
+                (Leaky-Integrate-and-Fire-Model)</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light  modal-trigger" href="#modal1">Documentation</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="loader loader-website-loading" id="loader-website-loading"></div>
+
+
+    <div id="container" class="container">
+
+        <div class="row">
+            <div class="col s6">
+                <div id="upload-and-example-form" class="upload-and-example-form">
+                    <div class="card">
+                        <div class="card-content">
+                            <div id="upload-tab">
+                                <div class="input-field col s12">
+                                    <select name="select" id="select">
+                                        <option value="" selected>none</option>
+                                        <option value="sigmoid">sigmoid</option>
+                                        <option value="elu">ELU</option>
+                                        <option value="relu">ReLU</option>
+                                        <option value="selu">SELU</option>
+                                    </select>
+                                    <label>Activation</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select name="optimizer" id="optimizer">
+                                        <option value="adadelta">Adadelta</option>
+                                        <option value="adagrad">Adagrad</option>
+                                        <option value="adam" selected>Adam</option>
+                                        <option value="ftlr">FTLR</option>
+                                        <option value="nadam">Nadam</option>
+                                        <option value="rmsprop">RMSPROP</option>
+                                        <option value="sgd">SGD</option>
+                                    </select>
+                                    <label>Optimization</label>
+                                </div>
+
+
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="neurons" type="number" min="1" max="50"
+                                                value="5">
+                                            <label for="neurons">Neurons</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="learningRate" min="0.001" max="1"
+                                                type="number" value="0.1">
+                                            <label for="learningRate">Learning rate</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="hiddenLayers" min="1" max="100"
+                                                type="number" value="1">
+                                            <label for="hiddenLayers">Hidden layers</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="epochs" min="1" max="500" type="number"
+                                                value="50">
+                                            <label for="epochs">Epochs</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="min" min="-100" max="0" type="number"
+                                                value="-1">
+                                            <label for="epochs">Min</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="max" min="0" max="100" type="number"
+                                                value="1">
+                                            <label for="epochs">Max</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="numberValues" min="1" max="10000"
+                                                type="number" value="100">
+                                            <label for="epochs">Number of N</label>
+                                        </div>
+                                        <div class="input-field col s12">
+                                            <input placeholder="Placeholder" id="weight" min="0" max="1" step="0.01"
+                                                type="number" value="0.01">
+                                            <label for="epochs">Weight</label>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <button class="btn waves-effect waves-light" id="button" type="submit"
+                                    name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6">
+                <div class="card image-card" id="image-card">
+                    <div class="card-content">
+
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input placeholder="Placeholder" id="xwert" type="number" value="50">
+                                    <label for="single">single</label>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <button class="btn waves-effect waves-light" id="singleButton" type="submit"
+                            name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <div id="ywertanzeige"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s6">
+                <div class="card image-card" id="image-card">
+                    <div class="card-content">
+                        <span class="card-title">Classified Image</span>
+                        <div id="test"></div>
+                        <div id="test2"></div>
+                        <div id="test3"></div>
+
+                        <div id="testgraph"></div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="page-footer" id="page-footer">
+        <div class="container">
+            Author: Maite-Aileen Brandt
+        </div>
+    </footer>
+
+
+    <!-- Import the main script file -->
+    <script src="index.js"></script>
+</body>
+
+</html>
