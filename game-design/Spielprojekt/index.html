@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 </html>
 
-<!-- <html lang="en-US"> -->
 
 <head>
   <meta charset="UTF-8">
@@ -14,9 +13,6 @@
 <body>
 
 
-  <!-- <h1 id="scratch-assets">openblock-assets</h1> -->
-
-  <!-- <p>Used to store media data such as sprite music background.</p> -->
 
 
   <h1>menersar.github.io</h1>
@@ -25,10 +21,6 @@
 
   <h2> Game Design </h2>
   <h3> Studienarbeit: </h3>
-  <!-- <link href="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/index.html" rel="import" /> -->
-  
-  <!-- <iframe src="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/index.html"> Spielprojekt </iframe> -->
-  <!-- <iframe src="https://menersar.github.io/game-design/Dokumentation/GameDesign_GDD_ESA8Finale Standalone-Version_Brandt.pdf"> Game-Design-Dokument </iframe> -->
 
   <object type="text/html" data="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/index.html"></object>
   <object type="application/pdf" data="https://menersar.github.io/game-design/Dokumentation/GameDesign_GDD_ESA8Finale Standalone-Version_Brandt.pdf" width="250" height="200"></object>
@@ -36,4 +28,105 @@
 
 </body>
 
+</html> -->
+
+
+
+
+  <!-- <html lang="en-US"> -->
+
+
+
+  <!-- <h1 id="scratch-assets">openblock-assets</h1> -->
+
+  <!-- <p>Used to store media data such as sprite music background.</p> -->
+
+
+  <!-- <link href="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/index.html" rel="import" /> -->
+  
+  <!-- <iframe src="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/index.html"> Spielprojekt </iframe> -->
+  <!-- <iframe src="https://menersar.github.io/game-design/Dokumentation/GameDesign_GDD_ESA8Finale Standalone-Version_Brandt.pdf"> Game-Design-Dokument </iframe> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | Agent 7 – Das Aufstreben von Dr. Silberblick</title>
+    <link rel="shortcut icon" href="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/TemplateData/favicon.ico">
+    <link rel="stylesheet" href="https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/TemplateData/style.css">
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-logo"></div>
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-mobile-warning">
+        WebGL builds are not supported on mobile devices.
+      </div>
+      <div id="unity-footer">
+        <div id="unity-webgl-logo"></div>
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Agent 7 – Das Aufstreben von Dr. Silberblick</div>
+      </div>
+    </div>
+    <script>
+      var buildUrl = "https://menersar.com/gamedesign/ESA8_FinalesSpielprojekt_WebGL_1/Build";
+      var loaderUrl = buildUrl + "/ESA8_FinalesSpielprojekt_WebGL_1.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/ESA8_FinalesSpielprojekt_WebGL_1.data.unityweb",
+        frameworkUrl: buildUrl + "/ESA8_FinalesSpielprojekt_WebGL_1.framework.js.unityweb",
+        codeUrl: buildUrl + "/ESA8_FinalesSpielprojekt_WebGL_1.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Brandt",
+        productName: "Agent 7 – Das Aufstreben von Dr. Silberblick",
+        productVersion: "1.5",
+      };
+
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var mobileWarning = document.querySelector("#unity-mobile-warning");
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        config.devicePixelRatio = 1;
+        mobileWarning.style.display = "block";
+        setTimeout(() => {
+          mobileWarning.style.display = "none";
+        }, 5000);
+      } else {
+        canvas.style.width = "960px";
+        canvas.style.height = "540px";
+      }
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        }).then((unityInstance) => {
+          loadingBar.style.display = "none";
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }).catch((message) => {
+          alert(message);
+        });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
 </html>
